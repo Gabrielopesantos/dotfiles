@@ -2,13 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/gabriel/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="gozilla"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting zsh-completions zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,6 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -95,26 +96,36 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-
-export CONFIG_HOME=$HOME/.config
-export NVIM_HOME=$CONFIG_HOME/nvim
-
-
-export PATH="$HOME/neovim/bin:$PATH" # Neovim-nightly export
-export PATH="$PATH:$HOME/.local/bin" # Pyls export
-export PATH="$PATH:/usr/local/go/bin" # Go path
-
-#export GOENV="$HOME/Development/go"
-export GOPATH="$HOME/go"
-export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
-export PATH="$PATH:$GOPATH/bin/gopls"
-
-source "$HOME/.cargo/env" # alacritty ?
-
+#
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias s='source ~/.config/zsh/.zshrc'
-alias vim='nvim'
-alias ll='ls -alh'
-alias ssh='TERM="xterm-256color" ssh'
+
+alias ls="ls -lah --color='auto'"
+
+# Added by me (Gabriel Santos)
+
+##  Exports
+# nvim nightly binary path
+export PATH="$HOME/neovim/bin:$PATH"
+
+# Golang 16.xxx binary path
+export PATH="$PATH:/usr/local/go/bin"
+# Go binaries folder
+export PATH="$PATH:$HOME/go/bin"
+
+# Temporary doom emacs configs
+# Alias for "emacs" = "emacs -nw"
+alias emacs="emacs -nw"
+# doom binary location
+
+export PATH="$PATH:$HOME/.emacs.d/bin"
+
+# rust ?
+. "$HOME/.cargo/env"
+
+# Flutter
+#export PATH=$PATH:$HOME/flutter/bin
+#export ANDROID_HOME=$HOME/Android/Sdk
+#export ANDROID_PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+#export PATH=$PATH:$ANDROID_PATH
