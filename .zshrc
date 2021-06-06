@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="gozilla"
+ZSH_THEME="sag"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -114,18 +114,5 @@ export PATH="$PATH:/usr/local/go/bin"
 # Go binaries folder
 export PATH="$PATH:$HOME/go/bin"
 
-# Temporary doom emacs configs
-# Alias for "emacs" = "emacs -nw"
-alias emacs="emacs -nw"
-# doom binary location
-
-export PATH="$PATH:$HOME/.emacs.d/bin"
-
 # rust ?
 . "$HOME/.cargo/env"
-
-# Flutter
-#export PATH=$PATH:$HOME/flutter/bin
-#export ANDROID_HOME=$HOME/Android/Sdk
-#export ANDROID_PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-#export PATH=$PATH:$ANDROID_PATH
