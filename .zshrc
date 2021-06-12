@@ -106,17 +106,14 @@ alias ls="ls -lah --color='auto'"
 # Added by me (Gabriel Santos)
 
 ##  Exports
-# nvim nightly binary path
+# nvim nightly bin path
 export PATH="$HOME/neovim/bin:$PATH"
 
-# Golang 16.xxx binary path
+# ~/.local/bin
+export PATH="$PATH:$HOME/.local/bin/"
+
+# Go 16.xxx bin path
 export PATH="$PATH:/usr/local/go/bin"
-# Go binaries folder
+
+# Go binaries dir
 export PATH="$PATH:$HOME/go/bin"
-
-# rust ?
-. "$HOME/.cargo/env"
-
-# IntelliJ
-alias idea="idea "$@" > /dev/null 2>&1 &"
-

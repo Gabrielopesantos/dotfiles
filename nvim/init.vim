@@ -55,7 +55,7 @@ Plug 'sbdchd/neoformat'
 
 call plug#end()
 
-lua require("lua_stuff")
+lua require "Gabriel".init()
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true } }
 
 let mapleader=" "

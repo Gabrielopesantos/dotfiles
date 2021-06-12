@@ -31,4 +31,4 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 # putting it all together
 PROMPT='%B%{$fg[green]%}$(directory)$(git_prompt_info) %{$fg[magenta]%}➜ %{$reset_color%}%b '
-RPROMPT='$(current_time)$(return_status)'
+RPROMPT='$(return_status)$(current_time)'
