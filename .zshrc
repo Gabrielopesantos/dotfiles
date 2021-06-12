@@ -116,3 +116,7 @@ export PATH="$PATH:$HOME/go/bin"
 
 # rust ?
 . "$HOME/.cargo/env"
+
+# IntelliJ
+alias idea="idea "$@" > /dev/null 2>&1 &"
+
