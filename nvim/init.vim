@@ -1,12 +1,12 @@
 call plug#begin("~/.config/nvim/plugged")
 
-" Plebvim lsp Plugins
+" LspConfig
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 Plug 'tjdevries/lsp_extensions.nvim'
 
-" Neovim Tree shitter
+" Neovim Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
@@ -20,10 +20,10 @@ Plug 'nvim-treesitter/playground'
 
 "Plug 'rust-lang/rust.vim'
 "Plug 'tweekmonster/gofmt.vim'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 "Plug 'junegunn/gv.vim'
 "Plug 'vim-utils/vim-man'
-Plug 'mbbill/undotree'
+"Plug 'mbbill/undotree'
 "Plug 'vuciv/vim-bujo'
 "Plug 'tpope/vim-dispatch'
 "Plug 'theprimeagen/vim-be-good'
@@ -33,12 +33,11 @@ Plug 'gruvbox-community/gruvbox'
 "Plug 'tpope/vim-projectionist'
 
 
-" telescope requirements...
+" Telescope requirements...
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-"Plug '/home/theprimeagen/personal/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+"Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 "Plug 'colepeters/spacemacs-theme.vim'
 "Plug 'sainnhe/gruvbox-material'
@@ -51,18 +50,27 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/harpoon'
 
 " prettier
-Plug 'sbdchd/neoformat'
+"Plug 'sbdchd/neoformat'
+
+" Lualine
+Plug 'hoob3rt/lualine.nvim'
+
+" Icons (Used by lualine and telescope)
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
-lua require "Gabriel".init()
+
+lua require'Gabriel'.init()
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true } }
 
-let mapleader=" "
+" Tmp lualine config
+lua require('lualine').setup()
 
 "remaps
+let mapleader=" "
 
-nnoremap <leader>t :Ex<CR>
+"nnoremap <leader>t :Ex<CR>
 "nnoremap <leader>- :vertical resize -5<CR>
 "nnoremap <leader>+ :vertical resize +5<CR>
 "nnoremap <leader>rp :resize 100<CR>

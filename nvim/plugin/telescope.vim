@@ -1,4 +1,4 @@
-lua require("lua_stuff")
+lua require("Gabriel")
 
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 "nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>

@@ -1,6 +1,5 @@
 local function init() 
-    require("lua_stuff.lsp")
-    require("lua_stuff.telescope")
+    require("Gabriel.lsp")
 end
 
 return {
