@@ -1,26 +1,41 @@
-# Added by me
-# Run once
-exec --no-startup-id compton
-exec --no-startup-id xrandr --output eDP-1 --off --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-2 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
+# Config
+#
+# Border & title
+for_window [class="^.*"] border pixel 1, title_format "<b> %class>%title </b>"
+#for_window [class="^.*"] client.focused
 
-# Run with reload
-exec_always --no-startup-id feh --bg-scale '/home/gabriel/.bgs/wp2.jpg'
-######
+# Gaps
+gaps inner 4
+gaps outer 0
 
-# mod key used for most binds 
+
+# font
+font pango:monospace 11
+
+# Mod key used for most binds 
 # Mod1 = Alt
 # Mod4 = WinKey / Super
 set $mod Mod1
 
-# font
-font pango:monospace 10
+bar {
+        status_command i3status
+        tray_output primary
+        position top
+}
 
-for_window [class="^.*"] border pixel 2
-for_window [class="^.*"] client.focused
+## Autostart ## 
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# Run once
+
+#exec --no-startup-id compton
+exec --no-startup-id xrandr --output eDP-1 --off --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-2 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
+
+# Run with reload
+
+#exec_always --no-startup-id feh --bg-scale '/home/gabriel/.bgs/wp2.jpg'
+
+
+######
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -44,7 +59,7 @@ exec --no-startup-id nm-applet
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -83,16 +98,16 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+z split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
+
+# Containers layout
+# split in horizontal orientation
+bindsym $mod+z split h
+# split in vertical orientation
+bindsym $mod+v split v
+
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -108,10 +123,6 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-
-# set monitors
-set $monitor_one HDMI-1
-set $monitor_one HDMI-2
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -165,15 +176,15 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym ccedilla resize grow width 10 px or 10 ppt
+        #bindsym h resize shrink height 10 px or 10 ppt
+        #bindsym l resize grow height 10 px or 10 ppt
+        #bindsym j resize shrink width 10 px or 10 ppt
+        #bindsym k resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
@@ -183,14 +194,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-        tray_output primary
-        position top
-}
 
 # lock screen
 
@@ -228,5 +231,5 @@ set $volumestep 5
 
 # Using pulseaudio-utils (append "-s $sinkname" without quotes to override default sink)
 bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
-bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
+bindsym XF8AudioLowerVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
 bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute
