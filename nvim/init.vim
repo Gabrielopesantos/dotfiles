@@ -58,16 +58,16 @@ Plug 'hoob3rt/lualine.nvim'
 " Icons (Used by lualine and telescope)
 Plug 'kyazdani42/nvim-web-devicons'
 
+" Comments
+Plug 'preservim/nerdcommenter'
+
 call plug#end()
 
-
+lua require'nvim-web-devicons'.setup {}
 lua require'Gabriel'.init()
-lua require'nvim-treesitter.configs'.setup {highlight = {enable = true } }
+lua require'nvim-treesitter.configs'.setup {highlight = {enable = true }}
 
-" Tmp lualine config
-lua require('lualine').setup()
-
-"remaps
+" Remaps
 let mapleader=" "
 
 "nnoremap <leader>t :Ex<CR>

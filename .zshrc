@@ -70,7 +70,7 @@ ZSH_THEME="sag"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-completions zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting zsh-completions zsh-autosuggestions docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,6 +105,10 @@ alias ls="ls -lah --color='auto'"
 
 # Added by me (Gabriel Santos)
 
+## Aliases
+alias pyact=". ~/py_main_env/bin/activate"
+alias pydeact="deactivate"
+
 ##  Exports
 # nvim nightly bin path
 export PATH="$HOME/neovim/bin:$PATH"
@@ -117,3 +121,7 @@ export PATH="$PATH:/usr/local/go/bin"
 
 # Go binaries dir
 export PATH="$PATH:$HOME/go/bin"
+
+# direnv test
+
+eval "$(direnv hook zsh)"
