@@ -14,13 +14,9 @@ Plug 'nvim-treesitter/playground'
 "Plug 'puremourning/vimspector'
 "Plug 'szw/vim-maximizer'
 
-" THANKS BFREDL
-"Plug '/home/mpaulson/personal/contextprint.nvim'
-"Plug '/home/mpaulson/personal/af-pluth-pluth'
-
 "Plug 'rust-lang/rust.vim'
 "Plug 'tweekmonster/gofmt.vim'
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 "Plug 'junegunn/gv.vim'
 "Plug 'vim-utils/vim-man'
 "Plug 'mbbill/undotree'
@@ -63,17 +59,12 @@ Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
-lua require'nvim-web-devicons'.setup {}
 lua require'Gabriel'.init()
 lua require'nvim-treesitter.configs'.setup {highlight = {enable = true }}
 
 " Remaps
 let mapleader=" "
 
-"nnoremap <leader>t :Ex<CR>
-"nnoremap <leader>- :vertical resize -5<CR>
-"nnoremap <leader>+ :vertical resize +5<CR>
-"nnoremap <leader>rp :resize 100<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gc=gv
 
