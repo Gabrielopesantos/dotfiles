@@ -1,0 +1,13 @@
+- name: Install N
+  npm:
+    name: n
+    global: yes
+  tags:
+    - install
+    - node
+
+- name: Install correct version of Node
+  shell: n 14
+  tags:
+    - install
+    - node
