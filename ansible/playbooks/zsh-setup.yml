@@ -26,18 +26,18 @@
     - install
     - zsh
 
-- name: Install zsh-highlighting
-  ansible.builtin.git:
-    repo: 'https://github.com/zsh-users/zsh-highlighting.git'
-    dest: "~/.oh-my-zsh/plugins/zsh-highlighting"
-  tags:
-    - install
-    - zsh
+# - name: Install zsh-highlighting
+#   ansible.builtin.git:
+#     repo: 'https://github.com/zsh-users/zsh-highlighting.git'
+#     dest: "~/.oh-my-zsh/plugins/zsh-highlighting"
+#   tags:
+#     - install
+#     - zsh
 
-- name: Install zsh-completions
-  ansible.builtin.git:
-    repo: 'https://github.com/zsh-users/zsh-completions.git'
-    dest: "~/.oh-my-zsh/plugins/zsh-completions"
-  tags:
-    - install
-    - zsh
+# - name: Install zsh-completions
+#   ansible.builtin.git:
+#     repo: 'https://github.com/zsh-users/zsh-completions.git'
+#     dest: "~/.oh-my-zsh/plugins/zsh-completions"
+#   tags:
+#     - install
+#     - zsh
