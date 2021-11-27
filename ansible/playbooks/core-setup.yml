@@ -1,16 +1,6 @@
 - name: Install system packages (apt)
   apt: name={{item}}
-  with_items:
-    - curl
-    - htop
-    - unzip
-    - tmux
-    - lsof
-    - tree
-    - tldr
-    - fzf
-    - python3-pip
-    - neofetch
+  name: ["curl", "htop", "unzip", "tmux", "lsof", "tree", "tldr", "fzf", "python3-pip", "neofetch"]
   tags:
     - install
     - core
