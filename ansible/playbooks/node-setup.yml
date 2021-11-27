@@ -1,9 +1,0 @@
-- name: Install n (/usr/bin/local/n)
-  # shell: curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n &&  bash n lts && npm install -g n
-  shell: git clone https://github.com/tj/n && cd n && make install
-
-- name: Install correct version of Node
-  shell: /usr/local/bin/n/n 14 # Has to be added to path
-  tags:
-    - install
-    - node
