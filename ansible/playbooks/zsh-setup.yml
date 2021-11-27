@@ -7,11 +7,14 @@
     - apt
 
 - name: Change default shell to zsh
-  shell: chsh -s $(which zsh)
+  vars:
+    user: $(whoami)
+  shell: chsh -s $(which zsh) {{ user }}
   tags:
     - zsh
 
 - name: Install Oh-My-Zsh
+  become: false
   shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
   tags:
     - install
@@ -26,18 +29,24 @@
     - install
     - zsh
 
-# - name: Install zsh-highlighting
-#   ansible.builtin.git:
-#     repo: 'https://github.com/zsh-users/zsh-highlighting.git'
-#     dest: "~/.oh-my-zsh/plugins/zsh-highlighting"
-#   tags:
-#     - install
-#     - zsh
+- name: Install zsh-highlighting
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting'
+    dest: "~/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+  tags:
+    - install
+    - zsh
 
-# - name: Install zsh-completions
-#   ansible.builtin.git:
-#     repo: 'https://github.com/zsh-users/zsh-completions.git'
-#     dest: "~/.oh-my-zsh/plugins/zsh-completions"
-#   tags:
-#     - install
-#     - zsh
+- name: Install zsh-completions
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-completions'
+    dest: "~/.oh-my-zsh/plugins/zsh-completions"
+  tags:
+    - install
+    - zsh
+
+- name: Install zsh theme
+  shell: curl -L https://github.com/Gabrielopesantos/.dotfiles/blob/main/zsh-theme/sag.zsh-theme > ~/.oh-my-zsh/themes
+  tags:
+    - install
+    - zsh
