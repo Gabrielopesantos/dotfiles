@@ -24,7 +24,7 @@
 - name: Install zsh-autosuggestions
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
-    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-autosuggestions"
   tags:
     - install
     - zsh
@@ -32,7 +32,7 @@
 - name: Install zsh-highlighting
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-syntax-highlighting'
-    dest: "~/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
   tags:
     - install
     - zsh
@@ -40,13 +40,19 @@
 - name: Install zsh-completions
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-completions'
-    dest: "~/.oh-my-zsh/plugins/zsh-completions"
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-completions"
   tags:
     - install
     - zsh
 
 - name: Install zsh theme
-  shell: curl -L https://github.com/Gabrielopesantos/.dotfiles/blob/main/zsh-theme/sag.zsh-theme > ~/.oh-my-zsh/themes
+  shell: curl -L https://raw.githubusercontent.com/Gabrielopesantos/.dotfiles/main/zsh-theme/sag.zsh-theme > {{ lookup('env', 'HOME') }}/.oh-my-zsh/themes/sag.zsh-theme
+  tags:
+    - install
+    - zsh
+
+- name: remove default .zshr
+  shell: "rm {{ lookup('env', 'HOME') }}/.zshrc"
   tags:
     - install
     - zsh
