@@ -4,7 +4,9 @@
     - install
     - dotfiles
     - stow
+
 - name: Cloning .dotfiles
+  become: false
   ansible.builtin.git:
     repo: "https://github.com/gabrielopesantos/.dotfiles"
     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
@@ -16,6 +18,7 @@
     - install
     - dotfiles
     - stow
+
 - name: Stow dotfiles
   become: false
   shell: "cd {{ lookup('env', 'HOME') }}/.dotfiles && ./ubuntu"
