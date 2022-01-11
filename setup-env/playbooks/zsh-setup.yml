@@ -1,4 +1,5 @@
 - name: Install ZSH
+  become: true
   apt: name=zsh
   tags:
     - install
@@ -7,15 +8,21 @@
     - apt
 
 - name: Change default shell to zsh
+  become: true
   vars:
     user: $(whoami)
   shell: chsh -s $(which zsh) {{ user }}
   tags:
     - zsh
 
+- name: Check if .oh-my-zsh is installed
+  stat:
+    path: ${{ lookup('env', 'HOME')}}/.oh-my-zsh
+  register: ohmyzsh
+
 - name: Install Oh-My-Zsh
-  become: false
   shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+  when: ohmyzsh.stat.exists == False
   tags:
     - install
     - zsh

@@ -1,0 +1,19 @@
+- hosts: localhost
+  gather_facts: true
+
+  pre_tasks:
+  - name: Update apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+
+  tasks:
+    - import_tasks: playbooks/apt-packages.yml
+    - import_tasks: playbooks/zsh-setup.yml
+    - import_tasks: playbooks/nvim-setup.yml
+    - import_tasks: playbooks/install-aws-cli.yml
+    - import_tasks: playbooks/dotfiles.yml
+      #- include: playbooks/node-setup.yml
+
