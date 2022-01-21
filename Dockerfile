@@ -21,5 +21,7 @@ WORKDIR /home/gabriel
 
 FROM gab
 COPY . .
+# Test locally
+COPY --chown=gabriel:gabriel . .dotfiles
 # CMD ["sh", "-c", "ansible-playbook $TAGS local.yml"]
 CMD ["bash"]

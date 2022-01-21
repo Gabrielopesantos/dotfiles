@@ -3,7 +3,7 @@
   ansible.builtin.package:
     name:
       - curl
-      - bottom
+      # - bottom
       - unzip
       - tmux
       - lsof
