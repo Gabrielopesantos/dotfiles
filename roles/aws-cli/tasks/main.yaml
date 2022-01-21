@@ -1,6 +1,13 @@
 ---
-- name: Install
-  kewlfft.aur.aur:
-    use: yay
-    name:
-      - aws-cli-v2-bin
+# - name: Install
+#   kewlfft.aur.aur:
+#     use: yay
+#     name:
+#       - aws-cli-v2-bin
+
+- name: Install AWS CLI
+  shell: >
+       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+       -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install &&
+       rm -rf awscliv2.zip ./aws
+  become: true

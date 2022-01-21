@@ -17,11 +17,14 @@ RUN adduser --gecos gabriel --uid 1000 --gid 1000 --disabled-password gabriel
 RUN usermod -a -G sudo gabriel
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER gabriel
+ENV USER=gabriel
 WORKDIR /home/gabriel
 
 FROM gab
 COPY . .
 # Test locally
 COPY --chown=gabriel:gabriel . .dotfiles
+COPY --chown=gabriel:gabriel values.yaml .config/dotfiles/values.yaml
 # CMD ["sh", "-c", "ansible-playbook $TAGS local.yml"]
+# CMD ["./bin/dotfiles"]
 CMD ["bash"]
