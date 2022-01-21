@@ -1,0 +1,11 @@
+---
+- name: Download
+  get_url:
+    dest: /tmp/twingate.pkg.tar.zst
+    url: https://binaries.twingate.com/client/linux/ARCH/latest/twingate-amd64.pkg.tar.zst
+
+- name: Install
+  community.general.pacman:
+    name: /tmp/twingate.pkg.tar.zst
+    state: latest
+  become: yes
