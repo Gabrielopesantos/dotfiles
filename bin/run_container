@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+
+if [ -x "$(command -v docker)" ]; then
+    docker image build -t ansible_test:latest .
+    docker container run --rm -it ansible_test:latest
+else
+    echo "Docker is not installed"
+fi
