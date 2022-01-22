@@ -63,3 +63,8 @@
     repo: https://github.com/agkozak/zsh-z
     single_branch: yes
     update: yes
+
+- name: Copy sag.zsh-theme
+  ansible.builtin.template:
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/themes/sag.zsh-theme"
+    src: sag.zsh-theme.j2

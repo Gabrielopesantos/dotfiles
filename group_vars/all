@@ -1,5 +1,9 @@
 default_roles:
     - packages
-    - aws-cli
-    - docker
     - git
+    - aws-cli
+    - oh-my-tmux
+    - nnn
+    - zsh
+    - oh-my-zsh
+    - docker
