@@ -1,7 +1,51 @@
 ---
-- name: Install
-  kewlfft.aur.aur:
+# - name: Install
+#   kewlfft.aur.aur:
+#     name:
+#       - pyenv
+#       - pyenv-virtualenv
+#     use: yay
+
+- name: Install dependencies
+  ansible.builtin.apt:
+    update_cache: true
+    state: latest
     name:
-      - pyenv
-      - pyenv-virtualenv
-    use: yay
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - liblzma-dev
+  become: true
+
+- name: Install
+  ansible.builtin.git:
+    clone: yes
+    depth: 1
+    repo:  https://github.com/pyenv/pyenv.git
+    dest: "{{ ansible_user_dir}}/.pyenv"
+    single_branch: yes
+    update: yes
+    version: master
+
+- name: Install pyenv-virtualenv
+  ansible.builtin.git:
+    clone: yes
+    depth: 1
+    repo: https://github.com/pyenv/pyenv-virtualenv.git
+    dest: "{{ ansible_user_dir}}/.pyenv/plugins/pyenv-virtualenv"
+    single_branch: yes
+    update: yes
+    version: master

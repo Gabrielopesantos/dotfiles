@@ -1,5 +1,4 @@
-default_roles:
-    - packages
+others:
     - git
     - aws-cli
     - oh-my-tmux
@@ -7,3 +6,9 @@ default_roles:
     - zsh
     - oh-my-zsh
     - docker
+    - pyenv
+default_roles:
+    - packages
+    - zsh
+    - oh-my-zsh
+    - pyenv

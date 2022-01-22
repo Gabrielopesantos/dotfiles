@@ -2,7 +2,6 @@
 - name: Install
   ansible.builtin.package:
     name:
-      - apt-utils
       - curl
       # - bottom
       - unzip
@@ -13,6 +12,7 @@
       - python3-pip
       - shellcheck
       - fzf
+      - virtualenv
       # - ripgrep
       - bat
     state: latest
