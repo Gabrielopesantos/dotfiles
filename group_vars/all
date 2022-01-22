@@ -1,14 +1,14 @@
 others:
-    - git
-    - aws-cli
-    - oh-my-tmux
-    - nnn
-    - zsh
-    - oh-my-zsh
-    - docker
-    - pyenv
 default_roles:
     - packages
     - zsh
     - oh-my-zsh
+    - git
+    - aws-cli
+    - oh-my-tmux
+    - nnn
+    - docker
     - pyenv
+    - go
+    - lazygit
+    - lazydocker

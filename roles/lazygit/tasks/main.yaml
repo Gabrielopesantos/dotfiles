@@ -1,6 +1,11 @@
 ---
+# - name: Install
+#   kewlfft.aur.aur:
+#     use: yay
+#     name:
+#       - lazygit
+
 - name: Install
-  kewlfft.aur.aur:
-    use: yay
-    name:
-      - lazygit
+  shell: |
+       /usr/local/go/bin/go install github.com/jesseduffield/lazygit@latest
+  become: true

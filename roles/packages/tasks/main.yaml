@@ -3,6 +3,7 @@
   ansible.builtin.package:
     name:
       - curl
+      - wget
       # - bottom
       - unzip
       - tmux

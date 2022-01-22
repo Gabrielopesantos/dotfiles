@@ -1,6 +1,11 @@
 ---
+# - name: Install
+#   kewlfft.aur.aur:
+#     use: yay
+#     name:
+#       - lazydocker
+
 - name: Install
-  kewlfft.aur.aur:
-    use: yay
-    name:
-      - lazydocker
+  shell: |
+       /usr/local/go/bin/go install github.com/jesseduffield/lazydocker@latest
+  become: true
