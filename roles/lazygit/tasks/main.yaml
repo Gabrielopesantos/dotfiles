@@ -7,5 +7,5 @@
 
 - name: Install
   shell: |
-       /usr/local/go/bin/go install github.com/jesseduffield/lazygit@latest
+        /usr/local/go/bin/go install github.com/jesseduffield/lazygit@latest
   become: true

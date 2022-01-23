@@ -1,13 +1,18 @@
 ---
-# - name: Install
-#   ansible.builtin.package:
-#     name:
-#       - go
-#     state: latest
-#   become: yes
+- name: Existing install
+  ansible.builtin.stat:
+    path: "/usr/local/go"
+  register: install
+
+- name: Download
+  ansible.builtin.get_url:
+    dest: /tmp/
+    mode: 0755
+    url: https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
+  when: not install.stat.exists
 
 - name: Install
-  shell: |
-       wget -O /tmp/go1.17.6.linux-amd64.tar.gz "https://go.dev/dl/go1.17.6.linux-amd64.tar.gz"
-       rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go1.17.6.linux-amd64.tar.gz
+  ansible.builtin.shell: >
+                        tar -C /usr/local -xzf /tmp/go1.17.6.linux-amd64.tar.gz
   become: true
+  when: not install.stat.exists

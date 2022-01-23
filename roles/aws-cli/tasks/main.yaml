@@ -1,13 +1,18 @@
 ---
-# - name: Install
-#   kewlfft.aur.aur:
-#     use: yay
-#     name:
-#       - aws-cli-v2-bin
+- name: Existing install
+  ansible.builtin.stat:
+    path: "/usr/local/bin/aws"
+  register: install
+
+- name: Download
+  ansible.builtin.get_url:
+    dest: /tmp/awscliv2.zip
+    mode: 0755
+    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+  when: not install.stat.exists
 
 - name: Install
-  shell: >
-       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
-       -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install &&
-       rm -rf awscliv2.zip ./aws
+  ansible.builtin.shell: >
+       unzip /tmp/awscliv2.zip -d /tmp/ && /tmp/aws/install
   become: true
+  when: not install.stat.exists
