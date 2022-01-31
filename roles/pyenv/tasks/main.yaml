@@ -35,7 +35,7 @@
     clone: yes
     depth: 1
     repo:  https://github.com/pyenv/pyenv.git
-    dest: "{{ ansible_user_dir}}/.pyenv"
+    dest: "{{ ansible_user_dir }}/.pyenv"
     single_branch: yes
     update: yes
     version: master
@@ -45,7 +45,7 @@
     clone: yes
     depth: 1
     repo: https://github.com/pyenv/pyenv-virtualenv.git
-    dest: "{{ ansible_user_dir}}/.pyenv/plugins/pyenv-virtualenv"
+    dest: "{{ ansible_user_dir }}/.pyenv/plugins/pyenv-virtualenv"
     single_branch: yes
     update: yes
     version: master

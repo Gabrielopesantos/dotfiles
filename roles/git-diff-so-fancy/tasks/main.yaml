@@ -1,0 +1,44 @@
+---
+- name: Existing install
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/diff-so-fancy"
+  register: install
+
+- name: Install
+  ansible.builtin.git:
+    clone: yes
+    depth: 1
+    repo:  https://github.com/so-fancy/diff-so-fancy
+    dest: "{{ ansible_user_dir }}/diff-so-fancy"
+    single_branch: yes
+    update: yes
+    version: master
+  when: not install.stat.exists
+
+
+- name: Set core.pager
+  community.general.git_config:
+    name: core.pager
+    scope: global
+    value: "diff-so-fancy | less --tabs=4 -RFX"
+
+- name: Set interactive.diffFilter
+  community.general.git_config:
+    name: interactive.diffFilter
+    scope: global
+    value: "diff-so-fancy --patch"
+
+- name: Other configs
+  ansible.builtin.shell: >
+    git config --global color.ui true &&
+    git config --global color.diff-highlight.oldNormal    "red bold" &&
+    git config --global color.diff-highlight.oldHighlight "red bold 52" &&
+    git config --global color.diff-highlight.newNormal    "green bold" &&
+    git config --global color.diff-highlight.newHighlight "green bold 22" &&
+    git config --global color.diff.meta       "11" &&
+    git config --global color.diff.frag       "magenta bold" &&
+    git config --global color.diff.func       "146 bold" &&
+    git config --global color.diff.commit     "yellow bold" &&
+    git config --global color.diff.old        "red bold" &&
+    git config --global color.diff.new        "green bold" &&
+    git config --global color.diff.whitespace "red reverse"
