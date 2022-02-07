@@ -13,4 +13,5 @@ default_roles:
     - go
     - lazygit
     - lazydocker
+    - k9s
     # - neovim

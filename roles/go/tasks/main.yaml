@@ -16,3 +16,4 @@
     tar -C /usr/local -xzf /tmp/go1.17.6.linux-amd64.tar.gz
   become: true
   when: not install.stat.exists
+

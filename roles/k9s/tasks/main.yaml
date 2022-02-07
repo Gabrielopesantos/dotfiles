@@ -1,18 +1,27 @@
 ---
+# Getting dev version/ go get depecrated
 - name: Install
-  ansible.builtin.package:
-    name:
-      - k9s
-    state: latest
-  become: yes
+  ansible.builtin.git:
+    clone: yes
+    depth: 1
+    dest: /tmp/k9s
+    repo: https://github.com/derailed/k9s
+    single_branch: yes
+    update: yes
+  register: clone
 
-- name: Directory
-  ansible.builtin.file:
-    mode: '0755'
-    path: "{{ ansible_user_dir }}/.config/k9s"
-    state: directory
+- name: Build
+  ansible.builtin.shell: >
+    cd /tmp/k9s && OUTPUT_BIN="$HOME/go/bin/k9s" make build
+  when: clone.changed
 
-- name: skin.yml
-  ansible.builtin.copy:
-    dest: "{{ ansible_user_dir }}/.config/k9s/skin.yml"
-    src: "skin.yml" 
+# - name: Directory
+#   ansible.builtin.file:
+#     mode: '0755'
+#     path: "{{ ansible_user_dir }}/.config/k9s"
+#     state: directory
+
+# - name: skin.yml
+#   ansible.builtin.copy:
+#     dest: "{{ ansible_user_dir }}/.config/k9s/skin.yml"
+#     src: "skin.yml" 

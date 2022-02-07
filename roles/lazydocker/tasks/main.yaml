@@ -6,6 +6,5 @@
 #       - lazydocker
 
 - name: Install
-  shell: |
-       /usr/local/go/bin/go install github.com/jesseduffield/lazydocker@latest
+  shell: /usr/local/go/bin/go install github.com/jesseduffield/lazydocker@latest
 #   become: true
