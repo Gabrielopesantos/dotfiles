@@ -14,4 +14,4 @@ default_roles:
     - lazygit
     - lazydocker
     - k9s
-    # - neovim
+    - neovim

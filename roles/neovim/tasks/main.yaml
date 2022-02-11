@@ -15,7 +15,7 @@
       # - curl
       - doxygen
     state: latest
-  become: yes
+  become: true
 
 - name: Clone
   ansible.builtin.git:
@@ -39,14 +39,14 @@
   make:
     chdir: "{{ ansible_user_dir }}/neovim"
     target: install
-  become: yes
+  become: true
   when: clone.changed
 
 - name: Remove build folder
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/neovim/build"
     state: absent
-  become: yes
+  become: true
 
 - name: Config folder
   ansible.builtin.file:

@@ -31,7 +31,7 @@ local function packer_startup()
       'nvim-lua/lsp_extensions.nvim',
     },
     config = function ()
-      require'TheAltF4Stream.plugins.lspconfig'.init()
+      require'Gabriel.plugins.lspconfig'.init()
     end
   }
   use 'hashivim/vim-terraform'
@@ -41,7 +41,7 @@ local function packer_startup()
     'nvim-treesitter/nvim-treesitter',
     run = 'TSUpdate',
     config = function ()
-      require'TheAltF4Stream.plugins.treesitter'.init()
+      require'Gabriel.plugins.treesitter'.init()
     end,
   }
 
@@ -63,9 +63,9 @@ local function packer_startup()
       'onsails/lspkind-nvim'
     },
     config = function ()
-      require'TheAltF4Stream.plugins.cmp'.init()
-      require'TheAltF4Stream.plugins.cmp_tabnine'.init()
-      require'TheAltF4Stream.plugins.lspkind'.init()
+      require'Gabriel.plugins.cmp'.init()
+      require'Gabriel.plugins.cmp_tabnine'.init()
+      require'Gabriel.plugins.lspkind'.init()
     end
   }
 
@@ -75,7 +75,7 @@ local function packer_startup()
     'nvim-telescope/telescope.nvim',
     requires = 'rmagatti/session-lens',
     config = function ()
-      require'TheAltF4Stream.plugins.telescope'.init()
+      require'Gabriel.plugins.telescope'.init()
     end
   }
 
@@ -83,7 +83,7 @@ local function packer_startup()
   use {
     'folke/tokyonight.nvim',
     config = function ()
-      require'TheAltF4Stream.plugins.tokyonight'.init()
+      require'Gabriel.plugins.tokyonight'.init()
     end
   }
 
@@ -97,7 +97,7 @@ local function packer_startup()
       'nvim-lua/plenary.nvim'
     },
     config = function ()
-      require'TheAltF4Stream.plugins.gitsigns'.init()
+      require'Gabriel.plugins.gitsigns'.init()
     end
   }
 
@@ -106,7 +106,7 @@ local function packer_startup()
   use {
     'rmagatti/auto-session',
     config = function ()
-      require'TheAltF4Stream.plugins.auto_session'.init()
+      require'Gabriel.plugins.auto_session'.init()
     end
   }
 
@@ -118,7 +118,7 @@ local function packer_startup()
   use {
     'hoob3rt/lualine.nvim',
     config = function ()
-      require'TheAltF4Stream.plugins.lualine'.init()
+      require'Gabriel.plugins.lualine'.init()
     end
   }
 
@@ -144,14 +144,14 @@ local function packer_startup()
   use {
     'voldikss/vim-floaterm',
     config = function ()
-      require'TheAltF4Stream.plugins.floaterm'.init()
+      require'Gabriel.plugins.floaterm'.init()
     end
   }
 
   use {
     'takac/vim-hardtime', -- see http://vimcasts.org/blog/2013/02/habit-breaking-habit-making
     config = function ()
-      require'TheAltF4Stream.plugins.hardtime'.init()
+      require'Gabriel.plugins.hardtime'.init()
     end
   }
 
@@ -167,7 +167,7 @@ local function packer_startup()
       'vimwiki/vimwiki'
     },
     config = function ()
-      require'TheAltF4Stream.plugins.zettel'.init()
+      require'Gabriel.plugins.zettel'.init()
     end
   }
 
@@ -178,7 +178,7 @@ local function packer_startup()
     },
     cmd = 'CodeActionMenu',
     config = function ()
-      require'TheAltF4Stream.plugins.code_action_menu'.init()
+      require'Gabriel.plugins.code_action_menu'.init()
     end
   }
 end

@@ -92,7 +92,7 @@ local function init()
   for _, server in pairs(lspcontainer_servers) do
     local config = make_config()
 
-    require'TheAltF4Stream.plugins.lspcontainers'.setup(config, server)
+    require'Gabriel.plugins.lspcontainers'.setup(config, server)
 
     require'lspconfig'[server].setup(config)
   end
