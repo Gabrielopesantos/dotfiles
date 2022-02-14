@@ -80,10 +80,17 @@ local function packer_startup()
   }
 
   -- Themes
+  --use {
+    --'folke/tokyonight.nvim',
+    --config = function ()
+      --require'Gabriel.plugins.tokyonight'.init()
+    --end
+  --}
+
   use {
-    'folke/tokyonight.nvim',
+    'monsonjeremy/onedark.nvim',
     config = function ()
-      require'Gabriel.plugins.tokyonight'.init()
+      require'Gabriel.plugins.onedark'.init()
     end
   }
 
@@ -148,12 +155,12 @@ local function packer_startup()
     end
   }
 
-  use {
-    'takac/vim-hardtime', -- see http://vimcasts.org/blog/2013/02/habit-breaking-habit-making
-    config = function ()
-      require'Gabriel.plugins.hardtime'.init()
-    end
-  }
+  --use {
+    --'takac/vim-hardtime', -- see http://vimcasts.org/blog/2013/02/habit-breaking-habit-making
+    --config = function ()
+      --require'Gabriel.plugins.hardtime'.init()
+    --end
+  --}
 
   -- VimWiki + Zettelkasten
   use {

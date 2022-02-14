@@ -1,5 +1,5 @@
 ---
-git_user_email: "Add"
+git_user_email: "gabrielopesantos97@gmail.com"
 git_user_name: "Gabriel Santos"
 zsh_public:
   HOME_BINS: "$HOME/.local/bin"
@@ -7,4 +7,5 @@ zsh_public:
   GO_BIN: "/usr/local/go/bin"
   GO_BINS: "$HOME/go/bin"
   DIFF_SO_FANCY: "$HOME/diff-so-fancy"
-  PATH: "$PATH:$HOME_BINS:$NVIM_PATH:$GO_BIN:$GO_BINS:$DIFF_SO_FANCY"
+  HOME_BINS: "$HOME/.local/bin"
+  PATH: "$PATH:$HOME_BINS:$NVIM_PATH:$GO_BIN:$GO_BINS:$DIFF_SO_FANCY:$HOME_BINS"

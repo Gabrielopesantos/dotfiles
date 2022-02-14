@@ -7,7 +7,7 @@
 #     use: yay
 
 - name: Install dependencies
-  ansible.builtin.apt:
+  ansible.builtin.package:
     update_cache: true
     state: latest
     name:

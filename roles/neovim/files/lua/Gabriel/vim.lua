@@ -38,6 +38,9 @@ local function set_vim_o()
   vim.cmd('set splitright')
   vim.cmd('set tabstop=4')
   vim.cmd('set updatetime=300')
+  vim.cmd('set colorcolumn=80')
+  vim.cmd('set list')
+  vim.cmd('set listchars=tab:▸\\ ,eol:¬')
 end
 
 local function set_vim_wo()
@@ -67,5 +70,5 @@ local function init()
 end
 
 return {
-  init = init
+  init = init,
 }
