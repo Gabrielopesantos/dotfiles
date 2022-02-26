@@ -40,6 +40,8 @@ local function set_vim_o()
   vim.cmd('set updatetime=300')
   vim.cmd('set colorcolumn=80')
   vim.cmd('set list')
+  vim.cmd('set mouse=a')
+  vim.cmd('set cursorline')
   vim.cmd('set listchars=tab:▸\\ ,eol:¬')
 end
 

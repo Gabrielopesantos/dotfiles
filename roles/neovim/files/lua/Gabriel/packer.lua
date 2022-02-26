@@ -155,13 +155,6 @@ local function packer_startup()
     end
   }
 
-  --use {
-    --'takac/vim-hardtime', -- see http://vimcasts.org/blog/2013/02/habit-breaking-habit-making
-    --config = function ()
-      --require'Gabriel.plugins.hardtime'.init()
-    --end
-  --}
-
   -- VimWiki + Zettelkasten
   use {
     'michal-h21/vim-zettel',
