@@ -16,5 +16,6 @@
       - virtualenv
       # - ripgrep
       - bat
+      - jq
     state: latest
   become: yes
