@@ -43,6 +43,7 @@ local function set_vim_o()
   vim.cmd('set mouse=a')
   vim.cmd('set cursorline')
   vim.cmd('set listchars=tab:▸\\ ,eol:¬')
+  vim.cmd('command W w')
 end
 
 local function set_vim_wo()
