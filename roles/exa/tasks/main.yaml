@@ -1,0 +1,8 @@
+
+---
+- name: Install Exa
+  ansible.builtin.package:
+    name:
+      - exa
+    state: latest
+  become: true

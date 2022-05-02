@@ -7,7 +7,6 @@ default_roles:
     - git-diff-so-fancy
     - aws-cli
     - oh-my-tmux
-    - nnn
     - docker
     - pyenv
     - go
@@ -15,3 +14,4 @@ default_roles:
     - lazydocker
     - k9s
     - neovim
+    - exa

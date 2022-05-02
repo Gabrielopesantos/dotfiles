@@ -2,7 +2,6 @@
 git_user_email: "gabrielopesantos97@gmail.com"
 git_user_name: "Gabriel Santos"
 zsh_public:
-  HOME_BINS: "$HOME/.local/bin"
   NVIM_PATH: "$HOME/neovim/bin"
   GO_BIN: "/usr/local/go/bin"
   GO_BINS: "$HOME/go/bin"
