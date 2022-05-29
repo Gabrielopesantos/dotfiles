@@ -4,4 +4,4 @@
     name:
       - bottom
     state: latest
-  become: yes
+  become: true

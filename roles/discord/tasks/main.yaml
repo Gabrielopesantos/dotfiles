@@ -4,4 +4,4 @@
     name:
       - discord
     state: latest
-  become: yes
+  become: true

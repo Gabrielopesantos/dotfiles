@@ -4,4 +4,4 @@
     name:
       - nvm
     state: latest
-  become: yes
+  become: true

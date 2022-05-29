@@ -4,7 +4,7 @@
     name:
       - kitty
     state: latest
-  become: yes
+  become: true
 
 - name: Config folder
   ansible.builtin.file:

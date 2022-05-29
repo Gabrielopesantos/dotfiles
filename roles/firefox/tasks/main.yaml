@@ -4,4 +4,4 @@
     name:
       - firefox
     state: latest
-  become: yes
+  become: true

@@ -4,4 +4,4 @@
     name:
       - bat
     state: latest
-  become: yes
+  become: true

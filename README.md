@@ -1,6 +1,6 @@
 # dotfiles
 
-## Known issues:
-- ~~lazydocker and lazygit are not being correctly installed~~
+Install:
+    - Run `./bin/dotfiles`
 
 Based on https://github.com/ALT-F4-LLC/dotfiles
