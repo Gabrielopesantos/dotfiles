@@ -1,0 +1,4 @@
+- name: Copy .ideavimrc
+  ansible.builtin.template:
+    dest: "{{ ansible_user_dir }}/.ideavimrc"
+    src: ".ideavimrc.j2"
