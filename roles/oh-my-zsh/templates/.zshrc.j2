@@ -34,8 +34,10 @@ alias ls='exa --icons'
 alias ssh='TERM="xterm-256color" ssh'
 alias tf='terraform'
 alias rebase='git fetch --all --prune --prune-tags && git rebase'
-alias vim="nvim"
-alias k="kubectl"
+alias vim='nvim'
+alias k='kubectl'
+alias code='code-insiders'
+#alias hist='history | awk -F "  " '{print $2}' | uniq | sort | fzf'
 
 # The next line sources a private environment file if it exists
 if [ -f "$HOME/.zsh_public" ]; then . "$HOME/.zsh_public"; fi
