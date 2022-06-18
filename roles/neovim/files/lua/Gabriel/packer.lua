@@ -80,19 +80,19 @@ local function packer_startup()
   }
 
   -- Themes
-  --use {
-    --'folke/tokyonight.nvim',
-    --config = function ()
-      --require'Gabriel.plugins.tokyonight'.init()
-    --end
-  --}
-
   use {
-    'monsonjeremy/onedark.nvim',
+    'folke/tokyonight.nvim',
     config = function ()
-      require'Gabriel.plugins.onedark'.init()
+      require'Gabriel.plugins.tokyonight'.init()
     end
   }
+
+  --use {
+    --'monsonjeremy/onedark.nvim',
+    --config = function ()
+      --require'Gabriel.plugins.onedark'.init()
+    --end
+  --}
 
   -- Git Support
   -- TODO: evaluate how often I am using this (10/19/21)
