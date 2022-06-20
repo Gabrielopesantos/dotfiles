@@ -2,7 +2,7 @@ local function init()
   require('lualine').setup {
     options = {
       extensions = { 'fzf', 'quickfix' },
-      theme = 'onedark'
+      theme = 'auto',
     }
   }
 end

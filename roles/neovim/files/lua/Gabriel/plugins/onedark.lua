@@ -1,7 +1,7 @@
 local function init()
-  require('onedark').setup({
-    transparent = 'false'
-  })
+
+  -- Load colorscheme
+  vim.cmd[[colorscheme base16-default-dark]]
 end
 
 return {
