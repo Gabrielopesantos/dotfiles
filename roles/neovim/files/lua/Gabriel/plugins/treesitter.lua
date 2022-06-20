@@ -36,8 +36,6 @@ local function init()
     }
   }
 
-  --vim.cmd[[set foldmethod=expr]]
-  --vim.cmd[[set foldexpr=nvim_treesitter#foldexpr()]]
 end
 
 return {

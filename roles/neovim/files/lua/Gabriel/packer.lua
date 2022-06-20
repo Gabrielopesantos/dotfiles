@@ -73,7 +73,7 @@ local function packer_startup()
   use 'nvim-lua/popup.nvim'
   use {
     'nvim-telescope/telescope.nvim',
-    requires = 'rmagatti/session-lens',
+    --requires = 'rmagatti/session-lens',
     config = function ()
       require'Gabriel.plugins.telescope'.init()
     end

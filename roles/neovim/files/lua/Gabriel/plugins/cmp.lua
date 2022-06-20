@@ -32,6 +32,8 @@ local function init()
         c = cmp.mapping.close(),
       }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<C-p>'] = cmp.mapping.select_prev_item(),
+      ['<C-n>'] = cmp.mapping.select_next_item(),
     },
     sources = {
       { name = 'cmp_tabnine' },
