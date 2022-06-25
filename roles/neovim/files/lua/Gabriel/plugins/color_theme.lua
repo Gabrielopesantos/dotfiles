@@ -1,6 +1,6 @@
 local function init()
   -- Load colorscheme
-  vim.cmd[[colorscheme base16-classic-dark]]
+  vim.cmd[[colorscheme base16-tomorrow-night]]
 end
 
 return {
