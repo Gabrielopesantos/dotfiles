@@ -30,7 +30,7 @@ local function set_vim_o()
   vim.o.clipboard = 'unnamedplus'
   vim.o.shortmess = vim.o.shortmess .. 'c'
 
-  -- Not yet in vim.o
+  -- Not yet in vim.o (Some of these might be already)
   vim.cmd('set encoding=utf8')
   vim.cmd('set nowritebackup')
   vim.cmd('set shiftwidth=4')
@@ -44,6 +44,7 @@ local function set_vim_o()
   vim.cmd('set cursorline')
   vim.cmd('set listchars=tab:▸\\ ,eol:¬')
   vim.cmd('set laststatus=3')
+  vim.cmd('set winbar=%=%m\\ %f')
   vim.cmd('command W w')
 end
 

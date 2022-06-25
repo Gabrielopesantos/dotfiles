@@ -79,18 +79,10 @@ local function packer_startup()
     end
   }
 
-  -- Themes
-  --use {
-    --'folke/tokyonight.nvim',
-    --config = function ()
-      --require'Gabriel.plugins.tokyonight'.init()
-    --end
-  --}
-
   use {
     'base16-project/base16-vim',
     config = function ()
-      require'Gabriel.plugins.onedark'.init()
+      require'Gabriel.plugins.color_theme'.init()
     end
   }
 
@@ -108,15 +100,6 @@ local function packer_startup()
     end
   }
 
-  -- Sessions
-  -- TODO: evaluate how often I am using this (10/19/21)
-  use {
-    'rmagatti/auto-session',
-    config = function ()
-      require'Gabriel.plugins.auto_session'.init()
-    end
-  }
-
   -- Utilities
   use 'unblevable/quick-scope' -- promote use of f<key>
 
@@ -124,7 +107,7 @@ local function packer_startup()
 
   use {
     'hoob3rt/lualine.nvim',
-    config = function ()
+    config = function()
       require'Gabriel.plugins.lualine'.init()
     end
   }
@@ -136,14 +119,14 @@ local function packer_startup()
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require"trouble".setup()
+    config = function ()
+      require'Gabriel.plugins.trouble_config'.init()
     end
   }
 
   use {
     'folke/lsp-colors.nvim',
-    config = function()
+    config = function ()
       require("lsp-colors").setup()
     end
   }
@@ -152,22 +135,6 @@ local function packer_startup()
     'voldikss/vim-floaterm',
     config = function ()
       require'Gabriel.plugins.floaterm'.init()
-    end
-  }
-
-  -- VimWiki + Zettelkasten
-  use {
-    'michal-h21/vim-zettel',
-    requires = {
-      {
-        'junegunn/fzf',
-        run = function () vim.fn['fzf#install']() end
-      },
-      'junegunn/fzf.vim',
-      'vimwiki/vimwiki'
-    },
-    config = function ()
-      require'Gabriel.plugins.zettel'.init()
     end
   }
 
@@ -181,6 +148,18 @@ local function packer_startup()
       require'Gabriel.plugins.code_action_menu'.init()
     end
   }
+
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    tag = 'nightly', -- optional, updated every week. (see issue #1193)
+    config = function ()
+      require'Gabriel.plugins.tree'.init()
+    end
+  }
+
 end
 
 local function init()

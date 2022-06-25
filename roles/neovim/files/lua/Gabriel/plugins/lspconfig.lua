@@ -74,7 +74,7 @@ local function init()
     "bashls",
     "dockerls",
     "html",
-    "pylsp",
+    "pyright",
     "rust_analyzer",
     "sumneko_lua",
     "terraformls",
