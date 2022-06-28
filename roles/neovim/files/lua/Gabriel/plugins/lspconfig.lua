@@ -66,8 +66,9 @@ local function init()
     "graphql",
     "gopls",
     "jsonls",
-    'jsonnet_ls',
+    "jsonnet_ls",
     "sqlls",
+    "rust_analyzer",
   }
 
   local lspcontainer_servers = {
@@ -75,7 +76,6 @@ local function init()
     "dockerls",
     "html",
     "pylsp",
-    "rust_analyzer",
     "sumneko_lua",
     "terraformls",
     "tsserver",

@@ -63,6 +63,13 @@ local function set_keymaps()
   map('n', '<leader>j', '<CMD>wincmd j<CR>', options)
   map('n', '<leader>k', '<CMD>wincmd k<CR>', options)
   map('n', '<leader>l', '<CMD>wincmd l<CR>', options)
+
+  map('n', '<leader>1', '1gt', options)
+  map('n', '<leader>2', '2gt', options)
+  map('n', '<leader>3', '3gt', options)
+  map('n', '<leader>4', '4gt', options)
+  map('n', '<leader>,', ':tabprevious<CR>', options)
+  map('n', '<leader>.', ':tabnext<CR>', options)
 end
 
 
