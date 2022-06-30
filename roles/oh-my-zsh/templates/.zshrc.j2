@@ -14,13 +14,53 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # OH-MY-ZSH
-export ZSH="$HOME/.oh-my-zsh"
+#export ZSH="$HOME/.oh-my-zsh"
+#ZSH_THEME="agnoster"
+#plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting zsh-z docker docker-compose)
+#source $ZSH/oh-my-zsh.sh
 
-ZSH_THEME="agnoster"
+# PLUGINS
+ZSH_PLUGINS_PATH=$HOME/.local/bin/zsh-plugins
+declare -a plugins=(
+    "zsh-autosuggestions/zsh-autosuggestions.zsh"
+    "zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    "zsh-z/zsh-z.plugin.zsh"
+    "git/git.plugin.zsh"
+    "common-aliases/common-aliases.plugin.zsh"
+)
 
-plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting zsh-z docker docker-compose)
+for file_path in "${plugins[@]}"; do
+    if [[ -a "$ZSH_PLUGINS_PATH/$file_path" ]]; then
+        source "$ZSH_PLUGINS_PATH/$file_path"
+    else
+        echo "Failed to run $ZSH_PLUGINS_PATH/$file_path"
+    fi
+done
 
-source $ZSH/oh-my-zsh.sh
+fpath=($HOME/.local/bin/zsh-plugins/zsh-completions $fpath)
+
+# Case insensitive completion
+autoload -U compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# No duplicate history
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=5000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Vim-style keybindings
+bindkey -v
+
+# STARSHIP THEME (Maybe also update some things?)
+eval "$(starship init zsh)"
 
 # DEFAULTS
 export EDITOR='nvim'
@@ -36,8 +76,6 @@ alias tf='terraform'
 alias rebase='git fetch --all --prune --prune-tags && git rebase'
 alias vim='nvim'
 alias k='kubectl'
-alias code='code-insiders'
-#alias hist='history | awk -F "  " '{print $2}' | uniq | sort | fzf'
 
 # The next line sources a private environment file if it exists
 if [ -f "$HOME/.zsh_public" ]; then . "$HOME/.zsh_public"; fi
