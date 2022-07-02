@@ -160,6 +160,21 @@ local function packer_startup()
     end
   }
 
+  use {
+    'TimUntersberger/neogit',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim'
+    },
+    config = function()
+      require("neogit").setup{
+        integrations = {
+          diffview = true
+        }
+      }
+    end
+  }
+
 end
 
 local function init()
