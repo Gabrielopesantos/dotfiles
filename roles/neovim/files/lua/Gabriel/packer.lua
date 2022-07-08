@@ -73,7 +73,10 @@ local function packer_startup()
   use 'nvim-lua/popup.nvim'
   use {
     'nvim-telescope/telescope.nvim',
-    --requires = 'rmagatti/session-lens',
+    -- Not sure if this is needed
+    require = {
+      'nvim-lua/plenary.nvim'
+    },
     config = function ()
       require'Gabriel.plugins.telescope'.init()
     end
@@ -96,14 +99,34 @@ local function packer_startup()
       'nvim-lua/plenary.nvim'
     },
     config = function ()
-      require'Gabriel.plugins.gitsigns'.init()
+      require('gitsigns').setup {
+      signs = {
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+      },
+    }
     end
   }
 
   -- Utilities
   use 'unblevable/quick-scope' -- promote use of f<key>
 
-  use 'lukas-reineke/indent-blankline.nvim'
+use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require("indent_blankline").setup {
+        show_end_of_line = true,
+        -- Not sure?
+        show_current_context = true,
+        show_current_context_start = true,
+    }
+      vim.opt.list = true
+      vim.opt.listchars:append("eol:↴")
+    end
+}
 
   use {
     'hoob3rt/lualine.nvim',
@@ -149,16 +172,16 @@ local function packer_startup()
     end
   }
 
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-    },
-    tag = 'nightly', -- optional, updated every week. (see issue #1193)
-    config = function ()
-      require'Gabriel.plugins.tree'.init()
-    end
-  }
+  --use {
+    --'kyazdani42/nvim-tree.lua',
+    --requires = {
+      --'kyazdani42/nvim-web-devicons',
+    --},
+    --tag = 'nightly', -- optional, updated every week. (see issue #1193)
+    --config = function ()
+      --require'Gabriel.plugins.tree'.init()
+    --end
+  --}
 
   use {
     'TimUntersberger/neogit',
@@ -172,6 +195,7 @@ local function packer_startup()
           diffview = true
         }
       }
+      vim.api.nvim_set_keymap('n', '<leader>ng' , '<CMD>Neogit<CR>', { noremap = true})
     end
   }
 
