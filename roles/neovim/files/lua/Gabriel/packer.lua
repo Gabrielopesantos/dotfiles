@@ -83,6 +83,17 @@ local function packer_startup()
   }
 
   use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
+    cond = vim.fn.executable "make" == 1,
+    config = function()
+      require('telescope').load_extension('fzf')
+    end
+  }
+
+
+  -- Color theme
+  use {
     'base16-project/base16-vim',
     config = function ()
       require'Gabriel.plugins.color_theme'.init()
@@ -90,7 +101,7 @@ local function packer_startup()
   }
 
   -- Git Support
-  -- TODO: evaluate how often I am using this (10/19/21)
+  -- TODO: evaluate how often I am using this (10/19/21) # ?
   use 'rhysd/git-messenger.vim'
 
   use {
