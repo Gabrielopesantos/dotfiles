@@ -3,10 +3,28 @@ set -ga terminal-overrides ",xterm-25kcolor*:Tc"
 unbind C-b
 set-option -g prefix C-a
 bind-key C-a send-prefix
-set -g status-style 'bg=#333333 fg=#5eacd3'
 
 bind r source-file ~/.tmux.conf
+# start window numbers at 1 to match keyboard order with tmux window order
 set -g base-index 1
+
+# start pane indexing at 1 for tmuxinator
+set-window-option -g pane-base-index 1
+
+# renumber windows sequentially after closing any of them
+set -g renumber-windows on
+
+# Faster escape sequences (default is 500ms).
+# This helps when exiting insert mode in Vim: http://superuser.com/a/252717/65504
+set -s escape-time 50
+
+# Neovim says it needs this
+set-option -g focus-events on
+
+# Rebind spit and new-window commands to use current path
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
 
 set-window-option -g mode-keys vi # What does this do?
 #bind -T copy-mode-vi v send-keys -X begin-selection
@@ -18,7 +36,34 @@ bind -r j select-pane -D
 bind -r h select-pane -L
 bind -r l select-pane -R
 
-# Mouse (copying, pane selection and resizing, select windows)
-set -g mouse on
+# Bind C-s to fuzzy switch session
+#bind -n C-s \
+  #split-window -l 10 'session=$(tmux list-sessions -F "#{session_name}" | fzf --query="$2" --select-1 --exit-0) && tmux switch-client -t "$session"' \;
 
-# bind-key -r i run-shell "tmux neww tmux-cht.sh"
+# Mousemode
+# Toggle mouse on
+bind m set -g mouse on \; display 'Mouse Mode: ON'
+
+# Toggle mouse off
+bind M set -g mouse off \; display 'Mouse Mode: OFF'
+
+# Reload tmux config
+bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+# Edit tmux conf
+#bind-key M split-window -h "vim ~/.tmux.conf"
+
+# Open a "test" split-window at the bottom
+bind t split-window -f -l 15 -c "#{pane_current_path}"
+# Open a "test" split-window at the right
+bind T split-window -h -f -p 35 -c "#{pane_current_path}"
+
+# Style status bar
+set -g status-style fg=white,bg=black
+set -g window-status-current-style fg=green,bg=black
+set -g pane-active-border-style fg=green,bg=black
+set -g window-status-format " #I:#W#F "
+set -g window-status-current-format " #I:#W#F "
+set -g window-status-current-style bg=green,fg=black
+set -g window-status-activity-style bg=black,fg=yellow
+set -g window-status-separator ""
+#set -g status-justify centre
