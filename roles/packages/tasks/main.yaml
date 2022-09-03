@@ -4,16 +4,17 @@
     name:
       - curl
       - wget
-      # - bottom
+       #- bottom
       - unzip
       - lsof
       - tree
       - tldr
       - python3-pip
       - shellcheck
-      - fzf
       - virtualenv
-      # - ripgrep
+      - fzf
+      - ripgrep
+      - fd-find
       - bat
       - jq
     state: latest

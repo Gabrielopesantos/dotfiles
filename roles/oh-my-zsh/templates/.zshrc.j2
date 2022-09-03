@@ -25,11 +25,6 @@ export EDITOR='nvim'
 # PIP
 export PIP_REQUIRE_VIRTUALENV=true
 
-# ?
-if [ -x "$(command -v fzf)" ]; then
-    source $HOME/.fzf/key-bindigs.zsh
-fi
-
 # ALIASES
 # Edit/Source vim config
 alias ez='vim ~/.zshrc'
@@ -41,8 +36,6 @@ alias tf='terraform'
 alias rebase='git fetch --all --prune --prune-tags && git rebase'
 alias vim='nvim'
 alias k='kubectl'
-alias code='code-insiders'
-alias k9s='docker run --rm -it -v ~/.kube/config:/root/.kube/config quay.io/derailed/k9s'
 if [ -x "$(command -v code-insiders)" ]; then
     alias code='code-insiders'
 fi
@@ -51,6 +44,24 @@ fo() {
   git branch --no-color --sort=-committerdate --format='%(refname:short)' | \
   fzf --header 'git checkout' | xargs git checkout
 }
+
+if [ -x "$(command -v fzf)" ]; then
+    source "$HOME"/.fzf/key-bindigs.zsh
+    source "$HOME"/.fzf/completion.zsh
+fi
+
+if [ -x "$(command -v fdfind)" ] && ! [ -h ~/.local/bin/fd ]; then
+    ln -s "$(which fdfind)" ~/.local/bin/fd
+fi
+
+if type fzf &> /dev/null && type fd &> /dev/null; then
+    FD_OPTIONS="--hidden --follow --exclude .git --exclude node_modules"
+    export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard 2>/dev/null || fd --type f --type l $FD_OPTIONS"
+    export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+    export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
+fi
+
 # The next line sources a private environment file if it exists
 if [ -f "$HOME/.zsh_public" ]; then . "$HOME/.zsh_public"; fi
 if [ -f "$HOME/.zsh_private" ]; then . "$HOME/.zsh_private"; fi
+
