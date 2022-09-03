@@ -14,53 +14,10 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # OH-MY-ZSH
-#export ZSH="$HOME/.oh-my-zsh"
-#ZSH_THEME="agnoster"
-#plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting zsh-z docker docker-compose)
-#source $ZSH/oh-my-zsh.sh
-
-# PLUGINS
-ZSH_PLUGINS_PATH=$HOME/.local/bin/zsh-plugins
-declare -a plugins=(
-    "zsh-autosuggestions/zsh-autosuggestions.zsh"
-    "zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-    "zsh-z/zsh-z.plugin.zsh"
-    "git/git.plugin.zsh"
-    "common-aliases/common-aliases.plugin.zsh"
-)
-
-for file_path in "${plugins[@]}"; do
-    if [[ -a "$ZSH_PLUGINS_PATH/$file_path" ]]; then
-        source "$ZSH_PLUGINS_PATH/$file_path"
-    else
-        echo "Failed to run $ZSH_PLUGINS_PATH/$file_path"
-    fi
-done
-
-fpath=($HOME/.local/bin/zsh-plugins/zsh-completions $fpath)
-
-# Case insensitive completion
-autoload -U compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-# No duplicate history
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=5000
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt incappendhistory
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-
-# Vim-style keybindings
-bindkey -v
-
-# STARSHIP THEME (Maybe also update some things?)
-eval "$(starship init zsh)"
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="agnoster"
+plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting zsh-z docker docker-compose)
+source $ZSH/oh-my-zsh.sh
 
 # DEFAULTS
 export EDITOR='nvim'
@@ -68,7 +25,15 @@ export EDITOR='nvim'
 # PIP
 export PIP_REQUIRE_VIRTUALENV=true
 
+# ?
+if [ -x "$(command -v fzf)" ]; then
+    source $HOME/.fzf/key-bindigs.zsh
+fi
+
 # ALIASES
+# Edit/Source vim config
+alias ez='vim ~/.zshrc'
+alias sz='source ~/.zshrc'
 alias bat='batcat --paging=never --theme="base16"'
 alias ls='exa --icons'
 alias ssh='TERM="xterm-256color" ssh'
@@ -76,7 +41,16 @@ alias tf='terraform'
 alias rebase='git fetch --all --prune --prune-tags && git rebase'
 alias vim='nvim'
 alias k='kubectl'
+alias code='code-insiders'
+alias k9s='docker run --rm -it -v ~/.kube/config:/root/.kube/config quay.io/derailed/k9s'
+if [ -x "$(command -v code-insiders)" ]; then
+    alias code='code-insiders'
+fi
 
+fo() {
+  git branch --no-color --sort=-committerdate --format='%(refname:short)' | \
+  fzf --header 'git checkout' | xargs git checkout
+}
 # The next line sources a private environment file if it exists
 if [ -f "$HOME/.zsh_public" ]; then . "$HOME/.zsh_public"; fi
 if [ -f "$HOME/.zsh_private" ]; then . "$HOME/.zsh_private"; fi
