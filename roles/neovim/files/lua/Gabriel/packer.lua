@@ -45,6 +45,9 @@ local function packer_startup()
     end,
   }
 
+  -- Additional textobjects for treesitter
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
+
   -- Completion
   use {
     'hrsh7th/nvim-cmp',
@@ -101,8 +104,9 @@ local function packer_startup()
   }
 
   -- Git Support
-  -- TODO: evaluate how often I am using this (10/19/21) # ?
-  use 'rhysd/git-messenger.vim'
+  --use 'rhysd/git-messenger.vim'
+
+  use 'tpope/vim-fugitive'
 
   use {
     'lewis6991/gitsigns.nvim',
@@ -140,7 +144,7 @@ use {
 }
 
   use {
-    'hoob3rt/lualine.nvim',
+    'nvim-lualine/lualine.nvim',
     config = function()
       require'Gabriel.plugins.lualine'.init()
     end
