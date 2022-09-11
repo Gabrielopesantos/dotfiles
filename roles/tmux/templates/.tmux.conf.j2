@@ -21,6 +21,16 @@ set -s escape-time 50
 # Neovim says it needs this
 set-option -g focus-events on
 
+# Use vim keybindings in copy mode
+setw -g mode-keys vi
+# Setup 'v' to begin selection
+bind-key -T copy-mode-vi v send -X begin-selection
+# Setup 'y' to copy selection
+bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
+# Setup 'P' to paste selection
+bind P paste-buffer
+
+
 # Rebind spit and new-window commands to use current path
 bind '"' split-window -c "#{pane_current_path}"
 bind % split-window -h -c "#{pane_current_path}"
