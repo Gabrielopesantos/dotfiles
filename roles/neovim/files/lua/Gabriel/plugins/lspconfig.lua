@@ -1,42 +1,41 @@
-local function on_attach(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+local function on_attach(_, bufnr)
+  local nmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
+
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
 
   -- Mappings
-  local opts = { noremap = true, silent = true }
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition{ reuse_win = true }<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-    if client.server_capabilities.documentFormattingProvider then
-      buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
-    end
+  nmap('gd', '<cmd>lua vim.lsp.buf.definition{ reuse_win = true }<CR>', '[G]oto [D]efinition')
+  nmap('gD', '<cmd>lua vim.lsp.buf.declaration{ reuse_win = true }<CR>', '[G]oto [D]eclaration')
+  nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  nmap('gr', require('telescope.builtin').lsp_references, 'G[o]to [R]eferences')
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 
-    if client.server_capabilities.documentRangeFormattingProvider then
-      buf_set_keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-    end
+  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-    if client.server_capabilities.documentHighlightProvider then
-      vim.api.nvim_exec([[
-        augroup lsp_document_highlight
-          autocmd! * <buffer>
-          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-      ]], false)
-    end
+  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  nmap('<leader>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, '[W]orkspace [L]ist Folders')
+
+  -- Doesn't need to be here
+  nmap('[d', vim.diagnostic.goto_prev)
+  nmap(']d', vim.diagnostic.goto_next)
+  nmap('<leader>e', vim.diagnostic.open_float)
+  nmap('<leader>q', vim.diagnostic.setloclist)
+
+  nmap('<leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', 'Format')
+
   end
 
 -- config that activates keymaps and enables snippet support
@@ -60,40 +59,16 @@ local function make_config()
 end
 
 local function init()
-  local lspconfig_servers = {
-    "cssls",
-    "elixirls",
-    "graphql",
-    "gopls",
-    "jsonls",
-    "jsonnet_ls",
-    "sqlls",
-    "rust_analyzer",
+  local servers = { 'clangd', 'rust_analyzer', 'pyright', 'gopls', 'sumneko_lua', 'yamlls', 'jsonls' }
+
+  require('mason-lspconfig').setup {
+    ensure_installed = servers,
+    automatic_installation = true,
   }
 
-  local lspcontainer_servers = {
-    "bashls",
-    "dockerls",
-    "html",
-    "pylsp",
-    "sumneko_lua",
-    "terraformls",
-    "tsserver",
-    "yamlls"
-  }
-
-  for _, server in pairs(lspconfig_servers) do
+  for _, lsp in ipairs(servers) do
     local config = make_config()
-
-    require'lspconfig'[server].setup(config)
-  end
-
-  for _, server in pairs(lspcontainer_servers) do
-    local config = make_config()
-
-    require'Gabriel.plugins.lspcontainers'.setup(config, server)
-
-    require'lspconfig'[server].setup(config)
+    require('lspconfig')[lsp].setup(config)
   end
 end
 

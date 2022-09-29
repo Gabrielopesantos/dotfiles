@@ -22,19 +22,26 @@ local function packer_startup()
 
   -- Packer
   use 'wbthomason/packer.nvim'
+ 
+  -- Install mason
+  use {
+    'williamboman/mason.nvim',
+    config = function()
+      require("mason").setup()
+    end
+  }
 
   -- Language Servers
   use {
-    'lspcontainers/lspcontainers.nvim',
+    "neovim/nvim-lspconfig",
     requires = {
-      'neovim/nvim-lspconfig',
-      'nvim-lua/lsp_extensions.nvim',
+      "williamboman/mason-lspconfig.nvim",
     },
     config = function ()
       require'Gabriel.plugins.lspconfig'.init()
     end
   }
-  use 'hashivim/vim-terraform'
+  -- use 'hashivim/vim-terraform' -- ?
 
   -- Treesitter
   use {
@@ -59,15 +66,10 @@ local function packer_startup()
       'hrsh7th/cmp-vsnip',
       'hrsh7th/vim-vsnip',
       'ray-x/cmp-treesitter',
-      {
-        'tzachar/cmp-tabnine',
-        run = "./install.sh",
-      },
       'onsails/lspkind-nvim'
     },
     config = function ()
       require'Gabriel.plugins.cmp'.init()
-      require'Gabriel.plugins.cmp_tabnine'.init()
       require'Gabriel.plugins.lspkind'.init()
     end
   }
@@ -104,7 +106,6 @@ local function packer_startup()
   }
 
   -- Git Support
-  --use 'rhysd/git-messenger.vim'
 
   use 'tpope/vim-fugitive'
 
@@ -129,7 +130,7 @@ local function packer_startup()
   -- Utilities
   use 'unblevable/quick-scope' -- promote use of f<key>
 
-use {
+  use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       require("indent_blankline").setup {
@@ -141,7 +142,7 @@ use {
       vim.opt.list = true
       vim.opt.listchars:append("eol:↴")
     end
-}
+  }
 
   use {
     'nvim-lualine/lualine.nvim',
