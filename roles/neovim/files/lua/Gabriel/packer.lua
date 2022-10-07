@@ -22,7 +22,7 @@ local function packer_startup()
 
   -- Packer
   use 'wbthomason/packer.nvim'
- 
+
   -- Install mason
   use {
     'williamboman/mason.nvim',
@@ -107,7 +107,7 @@ local function packer_startup()
 
   -- Git Support
 
-  use 'tpope/vim-fugitive'
+  use 'tpope/vim-fugitive' -- Remove?
 
   use {
     'lewis6991/gitsigns.nvim',
@@ -115,15 +115,7 @@ local function packer_startup()
       'nvim-lua/plenary.nvim'
     },
     config = function ()
-      require('gitsigns').setup {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    }
+      require'Gabriel.plugins.gitsigns'.init()
     end
   }
 
@@ -199,6 +191,7 @@ local function packer_startup()
     --end
   --}
 
+  -- I will replace this with diffview
   use {
     'TimUntersberger/neogit',
     requires = {
@@ -213,6 +206,14 @@ local function packer_startup()
       }
       vim.api.nvim_set_keymap('n', '<leader>ng' , '<CMD>Neogit<CR>', { noremap = true})
     end
+  }
+
+  -- Packer
+  use {
+    'sindrets/diffview.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
   }
 
 end
