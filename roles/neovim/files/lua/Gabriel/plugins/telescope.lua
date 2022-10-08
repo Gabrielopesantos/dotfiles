@@ -7,8 +7,19 @@ local function init()
         "%.pem",
         ".git/*",
       }
+    },
+    extensions = {
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        --case_mode = "smart_case",
+      },
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown {},
     }
   }
+}
 
   local map = vim.api.nvim_set_keymap
 
@@ -42,6 +53,13 @@ local function init()
   map('n', '<leader>ds', '<CMD>lua require("telescope.builtin").lsp_document_symbols{}<CR>', options)
   map('n', '<leader>ws', '<CMD>lua require("telescope.builtin").lsp_dynamic_workspace_symbols{}<CR>', options)
 
+  -- Git
+  map('n', '<leader>gcb', '<CMD>lua require("telescope.builtin").git_branches{theme=get_dropdown, previewer=false}<CR>', options)
+  map('n', '<leader>gcc', '<CMD>lua require("telescope.builtin").git_commits{}<CR>', options)
+
+  -- Others
+  map('n', '<leader>ch', '<CMD>lua require("telescope.builtin").command_history{}<CR>', options)
+  map('n', '<leader>sm', '<CMD>lua require("telescope.builtin").marks{}<CR>', options)
 
 end
 

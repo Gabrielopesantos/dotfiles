@@ -76,24 +76,25 @@ local function packer_startup()
 
   -- Telescope
   use 'nvim-lua/popup.nvim'
+  use 'nvim-telescope/telescope-ui-select.nvim'
   use {
     'nvim-telescope/telescope.nvim',
-    -- Not sure if this is needed
     require = {
-      'nvim-lua/plenary.nvim'
+      'nvim-lua/plenary.nvim',
     },
     config = function ()
       require'Gabriel.plugins.telescope'.init()
+      require('telescope').load_extension('ui-select')
+      require('telescope').load_extension('fzf')
     end
   }
 
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make',
-    cond = vim.fn.executable "make" == 1,
-    config = function()
-      require('telescope').load_extension('fzf')
-    end
+    cond = vim.fn.executable "make" == 1
+    --config = function()
+    --end
   }
 
 
