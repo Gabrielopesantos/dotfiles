@@ -85,16 +85,16 @@ local function packer_startup()
     config = function ()
       require'Gabriel.plugins.telescope'.init()
       require('telescope').load_extension('ui-select')
-      require('telescope').load_extension('fzf')
     end
   }
 
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make',
-    cond = vim.fn.executable "make" == 1
-    --config = function()
-    --end
+    cond = vim.fn.executable "make" == 1,
+    config = function()
+      require('telescope').load_extension('fzf')
+    end
   }
 
 
