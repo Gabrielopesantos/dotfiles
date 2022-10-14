@@ -77,16 +77,6 @@ local function packer_startup()
   -- Telescope
   use 'nvim-lua/popup.nvim'
   use 'nvim-telescope/telescope-ui-select.nvim'
-  use {
-    'nvim-telescope/telescope.nvim',
-    require = {
-      'nvim-lua/plenary.nvim',
-    },
-    config = function ()
-      require'Gabriel.plugins.telescope'.init()
-      require('telescope').load_extension('ui-select')
-    end
-  }
 
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -97,6 +87,16 @@ local function packer_startup()
     end
   }
 
+  use {
+    'nvim-telescope/telescope.nvim',
+    require = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function ()
+      require'Gabriel.plugins.telescope'.init()
+      require('telescope').load_extension('ui-select')
+    end
+  }
 
   -- Color theme
   use {
