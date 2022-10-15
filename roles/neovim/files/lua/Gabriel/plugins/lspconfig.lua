@@ -40,9 +40,9 @@ local function on_attach(_, bufnr)
 
 -- config that activates keymaps and enables snippet support
 local function make_config()
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-  capabilities.textDocument.completion.completionItem.resolveSupport = {
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities.textDocument.completion.snippetSupport = true
+  capabilities.textDocument.completion.resolveSupport = {
     properties = {
       'documentation',
       'detail',
