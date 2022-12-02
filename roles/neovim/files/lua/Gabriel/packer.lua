@@ -36,6 +36,7 @@ local function packer_startup()
     "neovim/nvim-lspconfig",
     requires = {
       "williamboman/mason-lspconfig.nvim",
+      "simrat39/rust-tools.nvim"
     },
     config = function ()
       require'Gabriel.plugins.lspconfig'.init()

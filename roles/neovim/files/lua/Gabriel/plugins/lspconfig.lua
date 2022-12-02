@@ -69,6 +69,9 @@ local function init()
   for _, lsp in ipairs(servers) do
     local config = make_config()
     require('lspconfig')[lsp].setup(config)
+    if (lsp == "rust_analyzer") then
+      require('rust-tools').setup({ server = config })
+    end
   end
 end
 
