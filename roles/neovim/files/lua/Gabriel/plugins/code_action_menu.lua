@@ -1,16 +1,16 @@
 local function init()
-  local map = vim.api.nvim_set_keymap
+    local map = vim.api.nvim_set_keymap
 
-  local options = { noremap = true }
+    local options = { noremap = true }
 
-  vim.api.nvim_exec([[
+    vim.api.nvim_exec([[
     autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
-  ]], false)
+  ]] , false)
 
-  -- Keymaps
-  map('n', '<leader>fm', '<CMD>CodeActionMenu<CR>', options)
+    -- Keymaps
+    map('n', '<leader>fm', '<CMD>CodeActionMenu<CR>', options)
 end
 
 return {
-  init = init
+    init = init
 }
