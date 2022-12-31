@@ -17,5 +17,6 @@
       - fd-find
       - bat
       - jq
+      - httpie
     state: latest
   become: true
