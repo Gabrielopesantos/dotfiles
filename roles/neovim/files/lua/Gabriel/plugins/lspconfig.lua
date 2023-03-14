@@ -59,7 +59,7 @@ local function make_config()
 end
 
 local function init()
-    local servers = { 'clangd', 'rust_analyzer', 'pylsp', 'gopls', 'sumneko_lua', 'yamlls', 'jsonls', "dockerls",
+    local servers = { 'clangd', 'rust_analyzer', 'pylsp', 'gopls', 'yamlls', 'jsonls', "dockerls",
         "terraformls", "bashls" }
 
     require('mason-lspconfig').setup {
