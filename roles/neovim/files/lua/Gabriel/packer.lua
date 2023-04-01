@@ -23,6 +23,17 @@ local function packer_startup()
     -- Packer
     use 'wbthomason/packer.nvim'
 
+    -- Harpoon
+    use {
+        'ThePrimeagen/harpoon',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = function()
+            require 'Gabriel.plugins.harpoon'.init()
+        end
+    }
+
     -- Install mason
     use {
         'williamboman/mason.nvim',
