@@ -8,12 +8,12 @@
   ansible.builtin.get_url:
     dest: /tmp/
     mode: 0755
-    url: https://go.dev/dl/go1.20.4.linux-amd64.tar.gz
+    url: https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
   when: not install.stat.exists
 
 - name: Install
   ansible.builtin.shell: >
-    tar -C /usr/local -xzf /tmp/go1.20.4.linux-amd64.tar.gz
+    tar -C /usr/local -xzf /tmp/go1.21.0.linux-amd64.tar.gz
   become: true
   when: not install.stat.exists
 
