@@ -228,7 +228,6 @@ local function packer_startup()
             'nvim-lua/plenary.nvim'
         }
     }
-
 end
 
 local function init()
